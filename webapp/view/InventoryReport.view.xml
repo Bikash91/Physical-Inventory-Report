@@ -1,0 +1,98 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	controllerName="com.sap.upl.PhysicalInventoryReport.controller.InventoryReport" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>title}" busy="{settingsModel>/busy}" showHeader="false">
+		<content>
+			<VBox width="100%">
+				<f:SimpleForm id="idPhysicalInventory" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="3"
+					labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+					singleContainerFullSize="false">
+					<f:content>
+						<Label text="{i18n>warehouseno}" design="Bold" required="true"/>
+						<!--<Input id="WareHouseNo" name="WareHouseNo" maxLength="3" value="{inventoryModel>/WHNUMBER}" placeholder="{i18n>warehouseno}"
+							change="onCheckAllField" required="true"/>-->
+						<ComboBox items="{/WHHELPSet}" placeholder="{i18n>warehouseno}" name="WareHouseNo" id="WareHouseNo" change="onCheckAllField" required="true">
+							<core:Item key="{WHNUMBER}" text="{WHNUMBER}"/>
+						</ComboBox>
+						<Label text="{i18n>bin}" design="Bold"/>
+						<!--<Input id="Bin" name="Bin" maxLength="10" value="{inventoryModel>/BIN}" placeholder="{i18n>bin}" change="onCheckAllField"/>-->
+						<Input name="Bin" required="true" maxLength="10" id="Bin" type="Text" textFormatMode="Key" showValueHelp="true" placeholder="{i18n>bin}"
+							valueHelpRequest="handleValueHelpRequest" suggestionItems="{path: '/BINHELPSet'}" value="{inventoryModel>/BIN}" change="onCheckAllField">
+							<suggestionItems>
+								<core:ListItem key="{BIN}" text="{BIN}"/>
+							</suggestionItems>
+						</Input>
+						<Label text="{i18n>itemCode}" design="Bold"/>
+						<Input id="ItemCode" value="{inventoryModel>/ITEM}" maxLength="18" name="ItemCode" placeholder="{i18n>itemCode}" change="onCheckAllField"/>
+						<Label text="{i18n>countDate}" design="Bold" required="true"/>
+						<DatePicker id="CountDate" change="onCountDate" required="true"
+							value="{path:'inventoryModel>/COUNTDATE', type:'sap.ui.model.type.Date', formatOptions: { style: 'short'}}"/>
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+			<VBox>
+				<ScrollContainer height="100%" vertical="true" horizontal="false">
+					<Table id="idInventoryReport" inset="false" alternateRowColors="true" noDataText="{i18n>nodata}" growing="true" growingThreshold="500"
+						growingScrollToLoad="true" items="{inventoryModel>/results}">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Title text="{i18n>items}" level="H2"/>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://filter" press="_onFilters" type="Emphasized"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column demandPopin="true">
+								<Label design="Bold" textAlign="Left" text="{i18n>bin}"/>
+							</Column>
+							<Column demandPopin="true">
+								<Label design="Bold" textAlign="Left" text="{i18n>itemCode}"/>
+							</Column>
+							<Column demandPopin="true">
+								<Label design="Bold" textAlign="Left" text="{i18n>itemDesc}"/>
+							</Column>
+							<Column demandPopin="true">
+								<Label design="Bold" textAlign="Left" text="{i18n>batch}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop">
+								<Label design="Bold" textAlign="Left" text="{i18n>actQuan}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop">
+								<Label design="Bold" textAlign="Left" text="{i18n>scanQuan}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop">
+								<Label design="Bold" textAlign="Left" text="{i18n>difference}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop">
+								<Label design="Bold" textAlign="Left" text="{i18n>countDate}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem >
+								<cells>
+									<Text text="{inventoryModel>BIN}"/>
+									<Text text="{inventoryModel>ITEM}"/>
+									<Text text="{inventoryModel>ITEMDES}"/>
+									<Text text="{inventoryModel>BATCH}"/>
+									<Text text="{inventoryModel>ACTUALSTOCK}"/>
+									<Text text="{inventoryModel>SCANNEDQTY}"/>
+									<!--<Text text="{inventoryModel>DIFFERENCE}"/>-->
+									<ObjectNumber class="sapUiSmallMarginBottom"
+										number="{ parts:[{path:'inventoryModel>DIFFERENCE'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+										state="{path:'inventoryModel>DIFFERENCE', formatter:'.formatter.setStatus'}"/>
+									<Text text="{inventoryModel>COUNTDATE}"/>
+									<!--<Text text="{path:'inventoryModel>COUNTDATE', type:'sap.ui.model.type.Date', formatOptions: { style: 'short'}}"/>-->
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</ScrollContainer>
+			</VBox>
+		</content>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button text="{i18n>execute}" tooltip="{i18n>execute}" press="getInventoryData" icon="sap-icon://accept" type="Emphasized"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

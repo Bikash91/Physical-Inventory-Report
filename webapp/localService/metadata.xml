@@ -1,0 +1,30 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:sap="http://www.sap.com/Protocols/SAPData"
+	xmlns:ux="http://www.sap.com/Protocols/OData4SAP/UX" xmlns:gp="http://www.sap.com/Protocols/SAPData/GenericPlayer" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZWMS_UPL_PHY_INVENTORY_REPORT_SRV" sap:schema-version="1"
+			xml:lang="en">
+			<EntityType Name="PHYREPORT" sap:content-version="1">
+				<Key><PropertyRef Name="COUNTDATE"/><PropertyRef Name="WHNUMBER"/><PropertyRef Name="BIN"/><PropertyRef Name="ITEM"/><PropertyRef Name="BATCH"/></Key><Property Name="COUNTDATE" Type="Edm.String" Nullable="false" MaxLength="8" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Count Date"/><Property Name="WHNUMBER" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="WareHouse"/><Property Name="BIN" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Bin"/><Property Name="ITEM" Type="Edm.String" Nullable="false" MaxLength="18" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Item"/><Property Name="BATCH" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:label="Batch"/><Property Name="ACTUALSTOCK" Type="Edm.String" Nullable="false" MaxLength="13" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Actual Stock"/><Property Name="SCANNEDQTY" Type="Edm.String" Nullable="false" MaxLength="13" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:label="Scanned Quantity"/><Property Name="DIFFERENCE" Type="Edm.String" Nullable="false" MaxLength="13" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="CHECKFIELDS" sap:content-version="1">
+				<Key><PropertyRef Name="WRNUMBER"/></Key><Property Name="WRNUMBER" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="BIN" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ITEM" Type="Edm.String" Nullable="false" MaxLength="18" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ERROR_INDICATOR" Type="Edm.String" Nullable="false" MaxLength="1" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ERROR_TYPE" Type="Edm.String" Nullable="false" MaxLength="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="MESSAGE" Type="Edm.String" Nullable="false" MaxLength="200" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/></EntityType>
+			<EntityContainer Name="ZWMS_UPL_PHY_INVENTORY_REPORT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="PHYREPORTSet" EntityType="ZWMS_UPL_PHY_INVENTORY_REPORT_SRV.PHYREPORT" sap:content-version="1" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"/><EntitySet Name="CHECKFIELDSSet" EntityType="ZWMS_UPL_PHY_INVENTORY_REPORT_SRV.CHECKFIELDS" sap:content-version="1" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false"/></EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="https://gwaas-ae7888026.hana.ondemand.com:443/odata/SAP/ZWMS_UPL_PHY_INVENTORY_REPORT_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="https://gwaas-ae7888026.hana.ondemand.com:443/odata/SAP/ZWMS_UPL_PHY_INVENTORY_REPORT_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

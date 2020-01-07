@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="handleConfirm" title="Sort and Filter">
+		<!--<sortItems>
+			<ViewSettingsItem text="Vendor Code" key="VendorCode" selected="true"/>
+			<ViewSettingsItem text="Vendor Name" key="VendorName"/>
+		</sortItems>-->
+		<filterItems>
+			<ViewSettingsFilterItem text="Difference" key="1" items="{inventoryModel>/difference}">
+				<items>
+					<ViewSettingsItem text="{inventoryModel>Text}" key="{inventoryModel>Key}"/>
+				</items>
+			</ViewSettingsFilterItem>
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>
